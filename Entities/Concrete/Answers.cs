@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Entities.Abstract;
 
-namespace Entities
+namespace Entities.Concrete
 {
-    public class Answers
+    public class Answers : IEntity
     {
         public int AnswersId { get; set; }
         public int QuestionId { get; set; }

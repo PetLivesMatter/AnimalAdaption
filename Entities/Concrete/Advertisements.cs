@@ -1,10 +1,9 @@
-﻿    using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using Entities.Abstract;
 
-namespace Entities
+namespace Entities.Concrete
 {
-    public class Advertisements
+    public class Advertisements : IEntity
     {
         public int AdvertisementsId { get; set; }
         public int AnimalId { get; set; }
