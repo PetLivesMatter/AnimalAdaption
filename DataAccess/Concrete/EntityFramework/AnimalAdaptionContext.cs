@@ -11,14 +11,14 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=AnimalAdaption;Trusted_Connection=true;")
+                @"Server=(localdb)\mssqllocaldb;Database=AnimalAdaption;Trusted_Connection=true;");
         }
 
-        public DbSet<Animals> Animals { get; set; }
-        public DbSet<Advertisements> Advertisements { get; set; }
-        public DbSet<AnimalTypes> AnimalTypes { get; set; }
-        public DbSet<Answers> Answers { get; set; }
-        public DbSet<Questions> Questions { get; set; }
-        public DbSet<Users> Users { get; set; }
+        public DbSet<Animal> Animals { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
+        public DbSet<AnimalType> AnimalTypes { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

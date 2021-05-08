@@ -8,7 +8,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAnimalTypesDal : EfEntityRepositoryBase<AnimalType,AnimalAdaptionContext>,IAnimalTypeDal
+    public class EfAnswerDal :EfEntityRepositoryBase<Answer,AnimalAdaptionContext>,IAnswerDal
     {
         
     }
