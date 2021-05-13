@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -18,24 +20,48 @@ namespace Business.Concrete
 
         }
 
-        public List<Animal> GetAll()
+        public IResult Add(Animal animal)
         {
-            return _animalDal.GetAll();
+            if (animal.AnimalName.Length<2)
+            {
+                return new ErrorResult(Messages.AnimalNameInvalid);
+            }
+            _animalDal.Add(animal);
+            return new SuccessResult( Messages.AnimalAdded);
         }
 
-        public List<Animal> GetAllByAnimalsTypeId(int Id)
+        public IDataResult<Animal> Delete(Animal animal)
         {
             throw new NotImplementedException();
         }
 
-        public List<Animal> GetAllByAnimalTypeId(int Id)
+        public IDataResult<List<Animal>> GetAll()
         {
-            return _animalDal.GetAll(p => p.AnimalTypesId == Id); 
+            if (DateTime.Now.Hour == 22)
+            {
+                return new ErrorDataResult<List<Animal>>(Messages.AnimalAdded);
+            }
+            return new SuccessDataResult<List<Animal>>(_animalDal.GetAll(),Messages.AnimalAll);
         }
 
-        public List<AnimalDetailDto> GetAnimalDetail()
+        public IDataResult<List<Animal>> GetAllByAnimalsTypeId(int Id)
         {
-            return _animalDal.GetAnimalDetail();
+            return new SuccessDataResult<List<Animal>>(_animalDal.GetAll(p => p.AnimalTypesId == Id)); 
+        }
+
+        public IDataResult<List<AnimalDetailDto>> GetAnimalDetail()
+        {
+            return new SuccessDataResult<List<AnimalDetailDto>>(_animalDal.GetAnimalDetail());
+        }
+
+        public IDataResult<Animal> GetById(int animalId)
+        {
+            return new SuccessDataResult<Animal>(_animalDal.Get(a => a.AnimalId == animalId));
+        }
+
+        public IDataResult<Animal> Update(Animal animal)
+        {
+            throw new NotImplementedException();
         }
     }
 }
