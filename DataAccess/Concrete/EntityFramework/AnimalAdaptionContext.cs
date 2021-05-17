@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=AnimalAdaption;Trusted_Connection=true;");
+                @"Server=(localdb)\MSSQLLocaldb;Database=AnimalAdaption;Trusted_Connection=true;");
         }
 
         public DbSet<Animal> Animals { get; set; }

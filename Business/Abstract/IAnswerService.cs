@@ -4,6 +4,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
@@ -15,5 +16,6 @@ namespace Business.Abstract
         IDataResult<Answer> Delete(Answer answer);
         IDataResult<Answer> Update(Answer answer);
         IDataResult<Answer> GetById(int answerId);
+        Task GetList();
     }
 }
