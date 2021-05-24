@@ -18,16 +18,16 @@ namespace DataAccess.Concrete.EntityFramework
             throw new NotImplementedException();
         }
     }
-        /*public List<AnimalDetailDto> GetAnimalDetail()
-        {
-            using (AnimalAdaptionContext context = new AnimalAdaptionContext())
-            {
-                var result = from a in context.Animals
-                    join t in context.AnimalTypes
-                        on a.AnimalTypesId equals t.AnimalTypeId;
+        //public List<AnimalDetailDto> GetAnimalDetail()
+        //{
+        //    using (AnimalAdaptionContext context = new AnimalAdaptionContext())
+        //    {
+        //        var result = from a in context.Animals
+        //            join t in context.AnimalTypes
+        //                on a.AnimalTypesId equals t.AnimalTypeId;
 
-            }
+        //    }
             
-        }*/
+        //
     }
-}
+

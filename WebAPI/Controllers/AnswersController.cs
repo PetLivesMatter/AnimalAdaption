@@ -15,92 +15,50 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AnswersController : ControllerBase
     {
+        private readonly IAnswerService _answerService;
 
-        [Route("api/[controller]")]
-        [ApiController]
-        public class AnswersController : Controller
+        public AnswersController(IAnswerService answerService)
         {
-            private readonly IAnswerService _answerService;
-            private readonly IHttpContextAccessor _httpContextAccessor;
-            private IWebHostEnvironment _env;
+            _answerService = answerService;
+        }
 
-            public AnswersController(IAnswerService answerService, IHttpContextAccessor httpContextAccessor, IWebHostEnvironment env)
+        [HttpGet("getall")]
+        public IActionResult GetAll()
+        {
+
+            var result = _answerService.GetAll();
+            if (result.Success)
             {
-                _answerService = answerService;
-                _httpContextAccessor = httpContextAccessor;
-                _env = env;
+                return Ok(result);
             }
 
-            [HttpGet("getall")]
-            public  Task<IActionResult> GetList()
-            {
-                var result =  _answerService.GetList();
-                if (result.Success)
-                {
-                    return Ok(result);
-                }
+            return BadRequest(result.Message);
+        }
 
-                return BadRequest(result);
+        [HttpPost("add")]
+        public IActionResult Add(Answer answer)
+        {
+            var result = _answerService.Add(answer);
+            if (result.Success)
+            {
+                return Ok(result);
+
             }
-           
+            return BadRequest(result);
+        }
 
-            [HttpGet("getbyid")]
-            public  Task<IActionResult> GetById(int id)
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _answerService.GetById(id);
+            if (result.Success)
             {
-                var envPath = _env.ContentRootPath;
-                var dirPath = Path.Combine(envPath, "images", "Answers");
-
-                var result =  _answerService.GetById(id, dirPath);
-                if (result.Success)
-                {
-                    return Ok(result);
-                }
-
-                return BadRequest(result);
+                return Ok(result);
             }
 
+            return BadRequest(result);
 
-            [HttpPost("add")]
-            public  Task<IActionResult> Add(Answer answer)
-            {
-                var envPath = _env.ContentRootPath;
-                var dirPath = Path.Combine(envPath, "images", "Answers");
-                var result =  _answerService.Add(answer, dirPath);
-                if (result.Success)
-                {
-                    return Ok(result);
-                }
-
-                return BadRequest(result);
-            }
-
-            [HttpPatch("update")]
-            public  Task<IActionResult> Update(Answer answer)
-            {
-                var envPath = _env.ContentRootPath;
-                var dirPath = Path.Combine(envPath, "images", "Answers");
-                var result =  _answerService.Update(answer, dirPath);
-                if (result.Success)
-                {
-                    return Ok(result);
-                }
-
-                return BadRequest(result);
-            }
-
-            [HttpDelete("delete/{id}")]
-            public  Task<IActionResult> Delete(int id)
-            {
-                var answer = new Answer { AnswerId = id };
-
-                var result =  _answerService.Delete(answer);
-                if (result.Success)
-                {
-                    return Ok(result);
-                }
-
-                return BadRequest(result);
-            }
         }
     }
+
 }

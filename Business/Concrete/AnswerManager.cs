@@ -7,6 +7,7 @@ using Entities.Concrete;
 using Core.Utilities.Results;
 using Business.Constants;
 using Entities.DTOs;
+using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -50,10 +51,15 @@ namespace Business.Concrete
             return new SuccessDataResult<Answer>(_answerDal.Get(a => a.AnswerId == answerId));
         }
 
+        public Task GetList()
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResult<Answer> Update(Answer answer)
         {
             throw new NotImplementedException();
         }
     }
 }
-}
+

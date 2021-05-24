@@ -23,7 +23,7 @@ namespace Business.Concrete
         public IResult Add(Question question)
         {
             _questionDal.Add(question);
-            return new SuccessResult(Messages.QuestionAdded);
+            return new SuccessResult();
         }
 
         public IDataResult<Question> Delete(Question question)
@@ -56,4 +56,4 @@ namespace Business.Concrete
         }
     }
 }
-}
+

@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AnimalsController : ControllerBase
     {
-        private IAnimalService _animalService;
+        private readonly IAnimalService _animalService;
 
         public AnimalsController(IAnimalService animalService)
         {
@@ -58,19 +58,6 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
 
-        }
-        [HttpDelete("delete/{id}")]
-        public Task<IActionResult> Delete(int id)
-        {
-            var animal = new Animal { AnimalId = id };
-
-            var result = _animalService.Delete(animal);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
         }
     }
         

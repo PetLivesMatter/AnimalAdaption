@@ -17,4 +17,4 @@ namespace Business.Abstract
         IDataResult<User> GetById(int userId);
     }
 }
-}
+

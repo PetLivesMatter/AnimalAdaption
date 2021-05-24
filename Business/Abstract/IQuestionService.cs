@@ -17,4 +17,4 @@ namespace Business.Abstract
         IDataResult<Question> GetById(int questionId);
     }
 }
-}
+

@@ -5,11 +5,15 @@ using System.Text;
 using Core.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAdvertisementDal : EfEntityRepositoryBase<Advertisement,AnimalAdaptionContext>,IAdvertisementDal
+    public class EfAdvertisementDal : EfEntityRepositoryBase<Advertisement, AnimalAdaptionContext>, IAdvertisementDal
     {
-        
+        public List<AdvertisemetDetailDto> GetAdvertisemetDetail()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

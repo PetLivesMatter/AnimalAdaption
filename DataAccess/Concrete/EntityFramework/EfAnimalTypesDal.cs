@@ -5,11 +5,15 @@ using System.Text;
 using Core.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAnimalTypesDal : EfEntityRepositoryBase<AnimalType,AnimalAdaptionContext>,IAnimalTypeDal
+    public class EfAnimalTypesDal : EfEntityRepositoryBase<AnimalType, AnimalAdaptionContext>, IAnimalTypeDal
     {
-        
+        public List<AnimalTypeDetailDto> GetAnimalTypeDetail()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

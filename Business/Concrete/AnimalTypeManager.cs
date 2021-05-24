@@ -10,7 +10,7 @@ using Business.Abstract;
 
 namespace Business.Concrete
 {
-    public class AnimalTypeTypeManager : IAnimalTypeService
+    public class AnimalTypeManager : IAnimalTypeService
     {
         IAnimalTypeDal _animalTypeDal;
 

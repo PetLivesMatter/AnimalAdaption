@@ -4,10 +4,12 @@ using System.Text;
 using Core.DataAccess;
 using Entities;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Abstract
 {
     public interface IQuestionDal : IEntityRepository<Question>
     {
+        List<QuestionDetailDto> GetQuestionDetail();
     }
 }
