@@ -1,16 +1,21 @@
-﻿using Castle.Core.Configuration;
+﻿using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+using Core.Utilities.Security.Encryption;
+using System.IdentityModel.Tokens.Jwt;
+using Core.Extensions;
 
 namespace Core.Utilities.Security.JWT
 {
     public class JwtHelper : ITokenHelper
     {
-        public IConfiguration Configuration { get; set; }
-        private TokenOptions _tokenOptions;
+        public IConfiguration Configuration { get; }
+        private readonly TokenOptions _tokenOptions;
         private DateTime _accessTokenExpiration;
 
         public JwtHelper(IConfiguration configuration)
@@ -22,7 +27,7 @@ namespace Core.Utilities.Security.JWT
         {
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
-            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
+            var signingCredentials = SigningCredentialHelper.CreateSigningCredentials(securityKey);
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
             var jwtSecurityTokenHelper = new JwtSecurityTokenHandler();
             var token = jwtSecurityTokenHelper.WriteToken(jwt);
@@ -54,8 +59,8 @@ namespace Core.Utilities.Security.JWT
             claims.AddEmail(user.Email);
             claims.AddName($"{user.FirstName} {user.LastName}");
             claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());
-            claims.AddLanguage(string.IsNullOrEmpty(user.Language) ? "tr" : user.Language);
             return claims;
         }
     }
 }
+ 

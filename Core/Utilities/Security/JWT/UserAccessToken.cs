@@ -19,3 +19,4 @@ namespace Core.Utilities.Security.JWT
         public string Gender { get; set; }
         public int? Age { get; set; }
     }
+}

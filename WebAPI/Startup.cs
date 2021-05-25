@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace WebAPI
 {
@@ -32,6 +33,23 @@ namespace WebAPI
             services.AddControllers();
             //services.AddSingleton<IAnimalService, AnimalManager>();
             //services.AddSingleton<IAnimalDal, EfAnimalDal>();
+
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo {Title = "AnimalAdaption Swagger UI", Version = "v1"});
+
+            //    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            //    {
+            //        Name = "Authorization",
+            //        Type = SecuritySchemeType.ApiKey,
+            //        Scheme = "Bearer",
+            //        BearerFormat = "JWT",
+            //        In = ParameterLocation.Header,
+            //        Description = "JWT Authorization header using the Bearer scheme."
+            //    });
+
+            //};
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +65,12 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalAdaption Swagger UI");
+            //});
+
 
             app.UseAuthorization();
 
