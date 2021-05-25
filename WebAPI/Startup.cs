@@ -92,9 +92,8 @@ namespace WebAPI
             //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnimalAdaption Swagger UI");
             //});
 
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
