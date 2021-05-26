@@ -25,7 +25,7 @@ namespace Business.Concrete
 
         }
 
-        [SecuredOperation("animal.add,admin")]
+        //[SecuredOperation("animal.add,admin")]
         [ValidationAspect(typeof(AnimalValidator))]
         public IResult Add(Animal animal)
         {

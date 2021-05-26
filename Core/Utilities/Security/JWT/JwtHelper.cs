@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Core.Utilities.Security.Encryption;
 using System.IdentityModel.Tokens.Jwt;
 using Core.Extensions;
+using Core.Utilities.Security.Jwt;
 
 namespace Core.Utilities.Security.JWT
 {
