@@ -36,10 +36,6 @@ namespace Business.Concrete
 
         public IDataResult<List<Advertisement>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
-            {
-                return new ErrorDataResult<List<Advertisement>>(Messages.AdvertisementAdded);
-            }
             return new SuccessDataResult<List<Advertisement>>(_advertisementDal.GetAll(), Messages.AdvertisementAll);
         }
 

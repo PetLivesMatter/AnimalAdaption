@@ -27,7 +27,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.AnswerAdded);
         }
 
-        public IDataResult<Answer> Delete(Answer answer)
+        public IDataResult<Answer> Delete(Answer Id)
         {
             _answerDal.Delete(Id);
 

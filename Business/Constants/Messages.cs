@@ -20,21 +20,22 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Başarılı giriş";
         public static string PasswordError = "Şifre hatalı";
         public static string UserNotFound = "Kullanıcı bulunamadı";
-        public static string UserAlreadyExists;
-        public static string AccessTokenCreated;
-
+        public static string UserAlreadyExists = "User already exist";
+        public static string AccessTokenCreated = "Acces token created";
         public static string AnswerAdded = "Cevap eklendi";
         public static string QuestionAdded = "Soru eklendi";
         public static string QuestionAll = "Tüm sorular listelendi";
         public static string AnswerAll = "Tüm cevaplar listelendi";
         public static string UserAdded = "Kullanıcı eklendi";
         public static string UserAll = "Tüm kullanıcılar ";
-        internal static Animal AnimalUpdated;
-        internal static Advertisement AdvertisementDeleted;
-        internal static AnimalType AnimalTypeDeleted;
-        internal static Answer AnswerDeleted;
-        internal static Question QuestionUpdated;
-
-        public static string AnimalDeleted { get; internal set; }
+        public static string AnimalUpdated = "Hayvanlar güncellendi";
+        public static string AdvertisementDeleted = "İlan silindi";
+        public static string AnimalTypeDeleted = "Hayvan türü silindi";
+        public static string AnswerDeleted = "Cevap silindi";
+        public static string QuestionUpdated = "Soru güncellendi";
+        public static string QuestionDeleted = "Soru silindi";
+        public static string AdvertisementAll = "Tüm cevaplar";
+        public static string AdvertisementAdded = "Cevap eklendi";
+        public static string AnimalDeleted = "Hayvan silindi";
     }
 }

@@ -48,7 +48,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Question>(_questionDal.Get(a => a.QuestionId == questionId));
         }
 
-        public IDataResult<Question> Update(Question question)
+        public IDataResult<Question> Update(Question question , string directoryPath)
         {
             Question existedQuestion = _questionDal.Get(a => a.QuestionId == question.QuestionId);
             existedQuestion.Content = string.IsNullOrEmpty(question.Content) ? existedQuestion.Content : question.Content;
