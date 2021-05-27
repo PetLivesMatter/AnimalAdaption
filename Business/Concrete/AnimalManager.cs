@@ -34,7 +34,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.AnimalAdded);
         }
 
-        [ValidationAspect(typeof(AnimalValidator))]
+        
         public  IDataResult<Animal> Delete(Animal Id)
         {
              _animalDal.Delete(Id);
@@ -75,7 +75,7 @@ namespace Business.Concrete
             existedAnimal.AnimalName = string.IsNullOrEmpty(animal.AnimalName) ? existedAnimal.AnimalName : animal.AnimalName;
             existedAnimal.AnimalGender = string.IsNullOrEmpty(animal.AnimalGender) ? existedAnimal.AnimalGender : animal.AnimalGender;
             existedAnimal.AnimalAge = string.IsNullOrEmpty(animal.AnimalAge) ? existedAnimal.AnimalAge : animal.AnimalAge;
-
+            existedAnimal.Address = string.IsNullOrEmpty(animal.Address) ? existedAnimal.Address : animal.Address;
             _animalDal.Update(existedAnimal);
             return new SuccessDataResult<Animal>(Messages.AnimalUpdated);
         }

@@ -2,7 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>0d9ac247-7933-46fe-a820-3ff925be62cf</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Web.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
