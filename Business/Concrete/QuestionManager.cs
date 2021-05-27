@@ -26,17 +26,15 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<Question> Delete(Question question)
+        public IDataResult<Question> Delete(Question Id)
         {
-            throw new NotImplementedException();
+            _questionDal.Delete(Id);
+
+            return new SuccessDataResult<Question>(Messages.QuestionDeleted);
         }
 
         public IDataResult<List<Question>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
-            {
-                return new ErrorDataResult<List<Question>>(Messages.QuestionAdded);
-            }
             return new SuccessDataResult<List<Question>>(_questionDal.GetAll(), Messages.QuestionAll);
         }
 
@@ -52,7 +50,12 @@ namespace Business.Concrete
 
         public IDataResult<Question> Update(Question question)
         {
-            throw new NotImplementedException();
+            Question existedQuestion = _questionDal.Get(a => a.QuestionId == question.QuestionId);
+            existedQuestion.Content = string.IsNullOrEmpty(question.Content) ? existedQuestion.Content : question.Content;
+            existedQuestion.Title = string.IsNullOrEmpty(question.Title) ? existedQuestion.Title : question.Title;
+
+            _questionDal.Update(existedQuestion);
+            return new SuccessDataResult<Question>(Messages.QuestionUpdated);
         }
     }
 }

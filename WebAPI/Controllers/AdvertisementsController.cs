@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +16,12 @@ namespace WebAPI.Controllers
     public class AdvertisementsController : ControllerBase
     {
         private readonly IAdvertisementService _advertisementService;
+        private IWebHostEnvironment _env;
 
-        public AdvertisementsController(IAdvertisementService advertisementService)
+        public AdvertisementsController(IAdvertisementService advertisementService, IWebHostEnvironment env)
         {
             _advertisementService = advertisementService;
+            _env = env;
         }
 
         [HttpGet("getall")]
@@ -57,5 +61,21 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var advertisement = new Advertisement { AdvertisementId = id };
+
+            var result = _advertisementService.Delete(advertisement);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
     }
 }
+

@@ -29,15 +29,13 @@ namespace Business.Concrete
 
         public IDataResult<Answer> Delete(Answer answer)
         {
-            throw new NotImplementedException();
+            _answerDal.Delete(Id);
+
+            return new SuccessDataResult<Answer>(Messages.AnswerDeleted);
         }
 
         public IDataResult<List<Answer>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
-            {
-                return new ErrorDataResult<List<Answer>>(Messages.AnswerAdded);
-            }
             return new SuccessDataResult<List<Answer>>(_answerDal.GetAll(), Messages.AnswerAll);
         }
 
@@ -49,16 +47,6 @@ namespace Business.Concrete
         public IDataResult<Answer> GetById(int answerId)
         {
             return new SuccessDataResult<Answer>(_answerDal.Get(a => a.AnswerId == answerId));
-        }
-
-        public Task GetList()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDataResult<Answer> Update(Answer answer)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Business.Abstract
         IDataResult<List<AnimalDetailDto>> GetAnimalDetail();
         IResult Add(Animal animal);
         IDataResult<Animal> Delete(Animal animal);
-        IDataResult<Animal> Update(Animal animal);
+        IDataResult<Animal> Update(Animal animal, string directoryPath);
         IDataResult<Animal> GetById(int animalId);
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +15,12 @@ namespace WebAPI.Controllers
     public class QuestionsController : ControllerBase
     {
         private readonly IQuestionService _questionService;
+        private IWebHostEnvironment _env;
 
-        public QuestionsController(IQuestionService questionService)
+        public QuestionsController(IQuestionService questionService, IWebHostEnvironment env)
         {
             _questionService = questionService;
+            _env = env;
         }
 
         [HttpGet("getall")]
@@ -56,6 +59,34 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
 
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var question = new Question { QuestionId = id };
+
+            var result = _questionService.Delete(question);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpPatch("update")]
+        public IActionResult Update(Question question)
+        {
+            var envPath = _env.ContentRootPath;
+            var dirPath = Path.Combine(envPath, "Questions");
+            var result = _questionService.Update(question, dirPath);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
         }
     }
 }

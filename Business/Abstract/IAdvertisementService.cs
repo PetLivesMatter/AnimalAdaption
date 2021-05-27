@@ -13,7 +13,6 @@ namespace Business.Abstract
         IDataResult<List<AdvertisemetDetailDto>> GetAdvertisementDetail();
         IResult Add(Advertisement advertisement);
         IDataResult<Advertisement> Delete(Advertisement advertisement);
-        IDataResult<Advertisement> Update(Advertisement advertisement);
         IDataResult<Advertisement> GetById(int advertisementId);
 
     }

@@ -57,5 +57,19 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var animalType = new AnimalType { AnimalTypeId = id };
+
+            var result = _animalTypeService.Delete(animalType);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
     }
 }

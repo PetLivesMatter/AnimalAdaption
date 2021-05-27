@@ -24,31 +24,28 @@ namespace Business.Concrete
         {
 
             _advertisementDal.Add(advertisement);
-            return new SuccessResult(Messages.AnimalAdded);
+            return new SuccessResult(Messages.AdvertisementAdded);
         }
 
-        public IDataResult<Advertisement> Delete(Advertisement advertisement)
+        public IDataResult<Advertisement> Delete(Advertisement Id)
         {
-            throw new NotImplementedException();
+            _advertisementDal.Delete(Id);
+
+            return new SuccessDataResult<Advertisement>(Messages.AdvertisementDeleted);
         }
 
         public IDataResult<List<Advertisement>> GetAll()
         {
             if (DateTime.Now.Hour == 22)
             {
-                return new ErrorDataResult<List<Advertisement>>(Messages.AnimalAdded);
+                return new ErrorDataResult<List<Advertisement>>(Messages.AdvertisementAdded);
             }
-            return new SuccessDataResult<List<Advertisement>>(_advertisementDal.GetAll(), Messages.AnimalAll);
+            return new SuccessDataResult<List<Advertisement>>(_advertisementDal.GetAll(), Messages.AdvertisementAll);
         }
 
         public IDataResult<Advertisement> GetById(int advertisementId)
         {
             return new SuccessDataResult<Advertisement>(_advertisementDal.Get(a => a.AdvertisementId == advertisementId));
-        }
-
-        public IDataResult<Advertisement> Update(Advertisement advertisement)
-        {
-            throw new NotImplementedException();
         }
 
         public IDataResult<List<AdvertisemetDetailDto>> GetAdvertisementDetail()

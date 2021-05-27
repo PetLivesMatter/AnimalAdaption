@@ -14,8 +14,6 @@ namespace Business.Abstract
         IDataResult<List<AnswerDetailDto>> GetAnswerDetail();
         IResult Add(Answer answer);
         IDataResult<Answer> Delete(Answer answer);
-        IDataResult<Answer> Update(Answer answer);
         IDataResult<Answer> GetById(int answerId);
-        Task GetList();
     }
 }

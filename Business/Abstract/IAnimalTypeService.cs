@@ -13,7 +13,6 @@ namespace Business.Abstract
         IDataResult<List<AnimalTypeDetailDto>> GetAnimalTypeDetail();
         IResult Add(AnimalType animalType);
         IDataResult<AnimalType> Delete(AnimalType animalType);
-        IDataResult<AnimalType> Update(AnimalType animalType);
         IDataResult<AnimalType> GetById(int animalTypeId);
     }
 }

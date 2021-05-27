@@ -35,18 +35,17 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(AnimalValidator))]
-        public IDataResult<Animal> Delete(Animal animal)
+        public  IDataResult<Animal> Delete(Animal Id)
         {
-            throw new NotImplementedException();
+             _animalDal.Delete(Id);
+
+            return new SuccessDataResult<Animal>(Messages.AnimalDeleted);
         }
 
         [ValidationAspect(typeof(AnimalValidator))]
         public IDataResult<List<Animal>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
-            {
-                return new ErrorDataResult<List<Animal>>(Messages.AnimalAdded);
-            }
+            
             return new SuccessDataResult<List<Animal>>(_animalDal.GetAll(), Messages.AnimalAll);
         }
 
@@ -70,9 +69,15 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(AnimalValidator))]
-        public IDataResult<Animal> Update(Animal animal)
+        public IDataResult<Animal> Update(Animal animal, string directoryPath)
         {
-            throw new NotImplementedException();
+            Animal existedAnimal =  _animalDal.Get(a => a.AnimalId == animal.AnimalId);
+            existedAnimal.AnimalName = string.IsNullOrEmpty(animal.AnimalName) ? existedAnimal.AnimalName : animal.AnimalName;
+            existedAnimal.AnimalGender = string.IsNullOrEmpty(animal.AnimalGender) ? existedAnimal.AnimalGender : animal.AnimalGender;
+            existedAnimal.AnimalAge = string.IsNullOrEmpty(animal.AnimalAge) ? existedAnimal.AnimalAge : animal.AnimalAge;
+
+            _animalDal.Update(existedAnimal);
+            return new SuccessDataResult<Animal>(Messages.AnimalUpdated);
         }
     }
 }

@@ -22,25 +22,19 @@ namespace Business.Concrete
 
         public IResult Add(AnimalType animalType)
         {
-            if (animalType.AnimalTypeName.Length < 2)
-            {
-                return new ErrorResult(Messages.AnimalTypeNameInvalid);
-            }
             _animalTypeDal.Add(animalType);
             return new SuccessResult(Messages.AnimalTypeAdded);
         }
 
-        public IDataResult<AnimalType> Delete(AnimalType animalType)
+        public IDataResult<AnimalType> Delete(AnimalType Id)
         {
-            throw new NotImplementedException();
+            _animalTypeDal.Delete(Id);
+
+            return new SuccessDataResult<AnimalType>(Messages.AnimalTypeDeleted);
         }
 
         public IDataResult<List<AnimalType>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
-            {
-                return new ErrorDataResult<List<AnimalType>>(Messages.AnimalTypeAdded);
-            }
             return new SuccessDataResult<List<AnimalType>>(_animalTypeDal.GetAll(), Messages.AnimalTypeAll);
         }
 
@@ -54,10 +48,6 @@ namespace Business.Concrete
             return new SuccessDataResult<AnimalType>(_animalTypeDal.Get(a => a.AnimalTypeId == animalTypeId));
         }
 
-        public IDataResult<AnimalType> Update(AnimalType animalType)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

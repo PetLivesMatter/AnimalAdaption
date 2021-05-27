@@ -13,7 +13,7 @@ namespace Business.Abstract
         IDataResult<List<QuestionDetailDto>> GetQuestionDetail();
         IResult Add(Question question);
         IDataResult<Question> Delete(Question question);
-        IDataResult<Question> Update(Question question);
+        IDataResult<Question> Update(Question question, string directoryPath);
         IDataResult<Question> GetById(int questionId);
     }
 }
