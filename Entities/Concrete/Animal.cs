@@ -6,9 +6,9 @@ namespace Entities.Concrete
     {
         public int AnimalId { get; set; }
         public int AnimalTypeId { get; set; }
+        public string Address { get; set; }
         public string AnimalName { get; set; }
         public string AnimalGender { get; set; } 
         public string AnimalAge { get; set; }
-        public int Address { get; set; }
     }
 }
