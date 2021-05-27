@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Business.Concrete;
+using Core.Entities.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,20 +16,22 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AnswersController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly IAnswerService _answerService;
+        private readonly IUserService _userService;
+        private IWebHostEnvironment _env;
 
-        public AnswersController(IAnswerService answerService)
+        public UsersController(IUserService userService, IWebHostEnvironment env)
         {
-            _answerService = answerService;
+            _userService = userService;
+            _env = env;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
 
-            var result = _answerService.GetAll();
+            var result = _userService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -36,9 +41,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Answer answer)
+        public IActionResult Add(User user)
         {
-            var result = _answerService.Add(answer);
+            var result = _userService.Add(user);
             if (result.Success)
             {
                 return Ok(result);
@@ -50,7 +55,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _answerService.GetById(id);
+            var result = _userService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -63,9 +68,23 @@ namespace WebAPI.Controllers
         [HttpDelete("deletebyid")]
         public IActionResult Delete(int id)
         {
-            var answer = new Answer { AnswerId = id };
+            var user = new User { Id = id };
 
-            var result = _answerService.Delete(answer);
+            var result = _userService.Delete(user);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpPatch("update")]
+        public IActionResult Update(User user)
+        {
+            var envPath = _env.ContentRootPath;
+            var dirPath = Path.Combine(envPath, "Users");
+            var result = _userService.Update(user, dirPath);
             if (result.Success)
             {
                 return Ok(result);
@@ -74,5 +93,4 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
     }
-
 }

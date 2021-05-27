@@ -3,6 +3,7 @@ using System.Linq;
 using Core.Entities.Concrete;
 using Core.EntityFramework;
 using DataAccess.Abstract;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -21,5 +22,6 @@ namespace DataAccess.Concrete.EntityFramework
 
             }
         }
+
     }
 }
