@@ -65,7 +65,7 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpDelete("deletebyid")]
+        [HttpPost("deletebyid")]
         public IActionResult Delete(int id)
         {
             var user = new User { Id = id };
