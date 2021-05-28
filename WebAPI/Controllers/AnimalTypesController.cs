@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpPost("delete/{id}")]
+        [HttpPost("deletebyid")]
         public IActionResult Delete(int id)
         {
             var animalType = new AnimalType { AnimalTypeId = id };
