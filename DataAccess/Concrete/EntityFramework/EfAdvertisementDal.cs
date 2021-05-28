@@ -9,7 +9,7 @@ using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAdvertisementDal : EfEntityRepositoryBase<Advertisement, AnimalAdaptionContext>, IAdvertisementDal
+    public class EfAdvertisementDal : EfEntityRepositoryBase<Advertisement, AdaptionProjectContext>, IAdvertisementDal
     {
         public List<AdvertisemetDetailDto> GetAdvertisemetDetail()
         {

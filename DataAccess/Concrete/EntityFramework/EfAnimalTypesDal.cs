@@ -9,7 +9,7 @@ using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAnimalTypesDal : EfEntityRepositoryBase<AnimalType, AnimalAdaptionContext>, IAnimalTypeDal
+    public class EfAnimalTypesDal : EfEntityRepositoryBase<AnimalType, AdaptionProjectContext>, IAnimalTypeDal
     {
         public List<AnimalTypeDetailDto> GetAnimalTypeDetail()
         {

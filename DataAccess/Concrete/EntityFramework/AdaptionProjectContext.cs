@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class AnimalAdaptionContext : DbContext
+    public class AdaptionProjectContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\MSSQLLocaldb;Database=AnimalAdaption;Trusted_Connection=true;");
+                @"Server=(localdb)\MSSQLLocaldb;Database=AdaptionProject;Trusted_Connection=true;");
         }
 
         public DbSet<Animal> Animals { get; set; }

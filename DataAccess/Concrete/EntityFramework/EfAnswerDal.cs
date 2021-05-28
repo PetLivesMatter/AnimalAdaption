@@ -9,7 +9,7 @@ using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAnswerDal : EfEntityRepositoryBase<Answer, AnimalAdaptionContext>, IAnswerDal
+    public class EfAnswerDal : EfEntityRepositoryBase<Answer, AdaptionProjectContext>, IAnswerDal
     {
         public List<AnswerDetailDto> GetAnswerDetail()
         {

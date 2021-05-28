@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAnimalDal : EfEntityRepositoryBase<Animal, AnimalAdaptionContext>, IAnimalDal
+    public class EfAnimalDal : EfEntityRepositoryBase<Animal, AdaptionProjectContext>, IAnimalDal
     {
         public List<AnimalDetailDto> GetAnimalDetail()
         {

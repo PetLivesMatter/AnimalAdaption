@@ -7,11 +7,11 @@ using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, AnimalAdaptionContext>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<User, AdaptionProjectContext>, IUserDal
     {
         public List<OperationClaim> GetClaims(User user)
         {
-            using (var context = new AnimalAdaptionContext())
+            using (var context = new AdaptionProjectContext())
             {
                 var result = from operationClaim in context.OperationClaims
                              join userOperationClaim in context.UserOperationClaims
