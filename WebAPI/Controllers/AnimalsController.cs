@@ -104,5 +104,18 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+
+        [HttpGet("getallbyanimaltypesid")]
+        public IActionResult GetAllByAnimalsTypeId(int id)
+        {
+
+            var result = _animalService.GetAllByAnimalsTypeId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
     }  
 }
