@@ -11,7 +11,7 @@ namespace Business.Abstract
     {
         IDataResult<List<Animal>> GetAll();
         IDataResult<List<Animal>> GetAllByAnimalsTypeId(int Id);
-        IDataResult<List<AnimalDetailDto>> GetAnimalDetail();
+        IDataResult<List<AnimalDetailDto>> GetAnimalDetail(int id);
         IResult Add(Animal animal);
         IDataResult<Animal> Delete(Animal animal);
         IDataResult<Animal> Update(Animal animal, string directoryPath);

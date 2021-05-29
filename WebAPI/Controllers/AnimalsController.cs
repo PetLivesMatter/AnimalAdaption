@@ -91,5 +91,18 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpGet("getanimaldetails")]
+        public IActionResult GetAnimalDetail(int id)
+        {
+
+            var result = _animalService.GetAnimalDetail(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
     }  
 }

@@ -13,21 +13,30 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfAnimalDal : EfEntityRepositoryBase<Animal, AdaptionProjectContext>, IAnimalDal
     {
-        public List<AnimalDetailDto> GetAnimalDetail()
+        public List<AnimalDetailDto> GetAnimalDetail(Expression<Func<AnimalDetailDto, bool>> filter = null)
         {
-            throw new NotImplementedException();
-        }
-    }
-        //public List<AnimalDetailDto> GetAnimalDetail()
-        //{
-        //    using (AnimalAdaptionContext context = new AnimalAdaptionContext())
-        //    {
-        //        var result = from a in context.Animals
-        //            join t in context.AnimalTypes
-        //                on a.AnimalTypesId equals t.AnimalTypeId;
+            using (AdaptionProjectContext context = new AdaptionProjectContext())
+            {
+                var result = from animals in context.Animals
+                             join types in context.AnimalTypes
+                                 on animals.AnimalTypeId equals types.AnimalTypeId
+                             select new AnimalDetailDto
+                             {
+                                 AnimalId = animals.AnimalId,
+                                 Address = animals.Address,
+                                 AnimalName = animals.AnimalName,
+                                 AnimalAge = animals.AnimalAge,
+                                 AnimalGender = animals.AnimalGender,
+                                 AnimalTypeName = types.AnimalTypeName
 
-        //    }
-            
-        //
+                             };
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
+            }
+
+
+        }
+
     }
+    
+}
 

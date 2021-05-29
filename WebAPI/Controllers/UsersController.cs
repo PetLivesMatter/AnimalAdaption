@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Business.Concrete;
 using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +22,13 @@ namespace WebAPI.Controllers
     {
         private readonly IUserService _userService;
         private IWebHostEnvironment _env;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UsersController(IUserService userService, IWebHostEnvironment env)
+        public UsersController(IUserService userService, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor)
         {
             _userService = userService;
             _env = env;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet("getall")]

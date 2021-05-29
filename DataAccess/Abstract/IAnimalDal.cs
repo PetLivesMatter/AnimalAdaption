@@ -5,11 +5,12 @@ using System.Text;
 using Entities.Concrete;
 using Core.DataAccess;
 using Entities.DTOs;
+using System.Linq.Expressions;
 
 namespace DataAccess.Abstract
 {
     public interface IAnimalDal : IEntityRepository<Animal>
     {
-        List<AnimalDetailDto> GetAnimalDetail();
+        List<AnimalDetailDto> GetAnimalDetail(Expression<Func<AnimalDetailDto, bool>> filter = null);
     }
 }

@@ -56,11 +56,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Animal>>(_animalDal.GetAll(p => p.AnimalTypeId == Id));
         }
 
+
+
         [ValidationAspect(typeof(AnimalValidator))]
-        public IDataResult<List<AnimalDetailDto>> GetAnimalDetail()
+        public IDataResult<List<AnimalDetailDto>> GetAnimalDetail(int id)
         {
-            return new SuccessDataResult<List<AnimalDetailDto>>(_animalDal.GetAnimalDetail());
+
+            return new SuccessDataResult<List<AnimalDetailDto>>(_animalDal.GetAnimalDetail(a => a.AnimalId==id));
         }
+
+
 
         [ValidationAspect(typeof(AnimalValidator))]
         public IDataResult<Animal> GetById(int animalId)
